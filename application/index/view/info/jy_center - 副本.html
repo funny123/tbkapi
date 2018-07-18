@@ -1,0 +1,211 @@
+{extend name="public/index"} {block name="content"}
+
+<body class="layui-layout-body">
+    <div style="margin-top:-30px;margin-left:-10px;margin-right:-10px;background-color:rgb(228,234,237);">
+        <div id="xianjia">
+            <div id="xian">
+                <div id="a">现价：110</div>
+                <div id="b">
+                    高:11 量：121
+                    <p id="d">低:11 量：121</p>
+                </div>
+                <!-- <div id="c">低:11  量：121</div> -->
+
+            </div>
+            <div id="search" style="float:right;margin-top:-60px;margin-right:30px;">
+                <div class="layui-input-inline">
+                    <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input" placeholder="请输入手机号或帐号">
+                </div>
+                搜索
+            </div>
+        </div>
+        <!-- 买卖 -->
+
+        <div class="layui-tab">
+            <div class="layui-row">
+                <div class="layui-col-xs6" id="mai1" onclick="display_mai1();">
+                    <div class="layui-this">买</div>
+                </div>
+                <div class="layui-col-xs6" id="mai2" onclick="display_mai2();">
+                    <div class="grid-demo">卖</div>
+                </div>
+            </div>
+        </div>
+        <hr class="layui-bg-green">
+        <div id="content_mai1">
+            <table class="layui-table" lay-even="" lay-skin="nob" align="center">
+                <tbody>
+                    <tr>
+                        <td><input type="checkbox" name="like1[write]" lay-skin="primary" title="写作" checked=""></td>
+                        <td>交易<span>8</span></td>
+                        <td>好评：<span>1</span></td>
+                        <td><span>买10币/$15</span></td>
+                        <td>信任<span>3</span></td>
+                        <td>总价：<span>20</span></td>
+                        <td><button class="layui-btn-xs layui-btn-danger layui-btn-radius">立即购买</button></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="like1[write]" lay-skin="primary" title="写作" checked=""></td>
+                        <td>交易<span>8</span></td>
+                        <td>好评：<span>1</span></td>
+                        <td><span>买10币/$15</span></td>
+                        <td>信任<span>3</span></td>
+                        <td>总价：<span>20</span></td>
+                        <td><button class="layui-btn-xs layui-btn-danger layui-btn-radius">立即购买</button></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="like1[write]" lay-skin="primary" title="写作" checked=""></td>
+                        <td>交易<span>8</span></td>
+                        <td>好评：<span>1</span></td>
+                        <td><span>买10币/$15</span></td>
+                        <td>信任<span>3</span></td>
+                        <td>总价：<span>20</span></td>
+                        <td><button class="layui-btn-xs layui-btn-danger layui-btn-radius">立即购买</button></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="like1[write]" lay-skin="primary" title="写作" checked=""></td>
+                        <td>交易<span>8</span></td>
+                        <td>好评：<span>1</span></td>
+                        <td><span>买10币/$15</span></td>
+                        <td>信任<span>3</span></td>
+                        <td>总价：<span>20</span></td>
+                        <td><button class="layui-btn-xs layui-btn-danger layui-btn-radius">立即购买</button></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="like1[write]" lay-skin="primary" title="写作" checked=""></td>
+                        <td>交易<span>8</span></td>
+                        <td>好评：<span>1</span></td>
+                        <td><span>买10币/$15</span></td>
+                        <td>信任<span>3</span></td>
+                        <td>总价：<span>20</span></td>
+                        <td><button class="layui-btn-xs layui-btn-danger layui-btn-radius">立即购买</button></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="like1[write]" lay-skin="primary" title="写作" checked=""></td>
+                        <td>交易<span>8</span></td>
+                        <td>好评：<span>1</span></td>
+                        <td><span>买10币/$15</span></td>
+                        <td>信任<span>3</span></td>
+                        <td>总价：<span>20</span></td>
+                        <td><button class="layui-btn-xs layui-btn-danger layui-btn-radius">立即购买</button></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="like1[write]" lay-skin="primary" title="写作" checked=""></td>
+                        <td>交易<span>8</span></td>
+                        <td>好评：<span>1</span></td>
+                        <td><span>买10币/$15</span></td>
+                        <td>信任<span>3</span></td>
+                        <td>总价：<span>20</span></td>
+                        <td><button class="layui-btn-xs layui-btn-danger layui-btn-radius">立即购买</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="height:30px;background-color:rgb(224,38,38);border-radius:8px;line-height:30px;text-align:center;">我要买</div>
+        </div>
+        <div id="content_mai2" style="display:none;">
+            <table class="layui-table" lay-even="" lay-skin="nob" align="center">
+                <tbody>
+                    <tr>
+                        <td><input type="checkbox" name="like1[write]" lay-skin="primary" title="写作" checked=""></td>
+                        <td>交易2<span>8</span></td>
+                        <td>好评2：<span>1</span></td>
+                        <td>信任2<span>3</span></td>
+                        <td>总价2：<span>20</span></td>
+                        <td><button class="layui-btn-xs layui-btn-danger layui-btn-radius">立即购买</button></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="like1[write]" lay-skin="primary" title="写作" checked=""></td>
+                        <td>交易2<span>8</span></td>
+                        <td>好评2：<span>1</span></td>
+                        <td>信任2<span>3</span></td>
+                        <td>总价2：<span>20</span></td>
+                        <td><button class="layui-btn-xs layui-btn-danger layui-btn-radius">立即购买</button></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="like1[write]" lay-skin="primary" title="写作" checked=""></td>
+                        <td>交易2<span>8</span></td>
+                        <td>好评2：<span>1</span></td>
+                        <td>信任2<span>3</span></td>
+                        <td>总价2：<span>20</span></td>
+                        <td><button class="layui-btn-xs layui-btn-danger layui-btn-radius">立即购买</button></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="like1[write]" lay-skin="primary" title="写作" checked=""></td>
+                        <td>交易2<span>8</span></td>
+                        <td>好评2：<span>1</span></td>
+                        <td>信任2<span>3</span></td>
+                        <td>总价2：<span>20</span></td>
+                        <td><button class="layui-btn-xs layui-btn-danger layui-btn-radius">立即购买</button></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="like1[write]" lay-skin="primary" title="写作" checked=""></td>
+                        <td>交易2<span>8</span></td>
+                        <td>好评2：<span>1</span></td>
+                        <td>信任2<span>3</span></td>
+                        <td>总价2：<span>20</span></td>
+                        <td><button class="layui-btn-xs layui-btn-danger layui-btn-radius">立即购买</button></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="like1[write]" lay-skin="primary" title="写作" checked=""></td>
+                        <td>交易2<span>8</span></td>
+                        <td>好评2：<span>1</span></td>
+                        <td>信任2<span>3</span></td>
+                        <td>总价2：<span>20</span></td>
+                        <td><button class="layui-btn-xs layui-btn-danger layui-btn-radius">立即购买</button></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="like1[write]" lay-skin="primary" title="写作" checked=""></td>
+                        <td>交易2<span>8</span></td>
+                        <td>好评2：<span>1</span></td>
+                        <td>信任2<span>3</span></td>
+                        <td>总价2：<span>20</span></td>
+                        <td><button class="layui-btn-xs layui-btn-danger layui-btn-radius">立即购买</button></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="like1[write]" lay-skin="primary" title="写作" checked=""></td>
+                        <td>交易<span>8</span></td>
+                        <td>好评：<span>1</span></td>
+                        <td>信任<span>3</span></td>
+                        <td>总价：<span>20</span></td>
+                        <td><button class="layui-btn-xs layui-btn-danger layui-btn-radius">立即购买</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="height:30px;background-color:rgb(224,38,38);border-radius:8px;line-height:30px;text-align:center;">我要卖</div>
+        </div>
+        <!-- end -->
+    </div>
+
+
+
+    <script src="../layui/layui.js"></script>
+    <script src="../layui/jquery-2.0.3.min.js"></script>
+    <script>
+        //JavaScript代码区域
+        layui.use('element', function() {
+            var element = layui.element;
+            // alert(123123);
+        });
+
+        function display(url) {
+            htmlobj = $.ajax({
+                url: url,
+                async: false
+            });
+            $("#bord").html(htmlobj.responseText);
+        }
+    </script>
+    <script>
+        function display_mai1() {
+            // alert(123123);
+            document.getElementById("content_mai1").style.display = "block";
+            document.getElementById("content_mai2").style.display = "none";
+        }
+
+        function display_mai2() {
+            document.getElementById("content_mai2").style.display = "block";
+            document.getElementById("content_mai1").style.display = "none";
+        }
+    </script>
+</body>
+{/block}

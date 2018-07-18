@@ -1,0 +1,464 @@
+{extend name="public/index"} {block name="content"}
+
+<body class="layui-layout-body">
+	<style>
+		.layui-layer-userinfo .layui-table {
+			margin-top: -1px;
+		}
+
+		.layui-layer-userinfo p {
+			font-size: 12px;
+			color: #3e3e3e;
+			text-align: center;
+		}
+	</style>
+	<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+		<legend>交易中心</legend>
+	</fieldset>
+	<div class="layui-fluid">
+
+
+		<div class="layui-bg-gray">
+			<div class="layui-row">
+				<div class="layui-col-md12">
+					<div class="layui-card" style="margin:15px">
+						<div class="layui-card-body">
+							<div class="layui-row">
+								<div class="layui-col-md3">
+									<h2 style="margin-top: 16px;">现价：￥<span id="x_jia"></span></h2>
+								</div>
+								<div class="layui-col-md4">
+									高:￥<span id="max_jia"></span> 量：12
+									<br>低:￥<span id="mix_jia"></span> 量：121
+								</div>
+								<div class="layui-col-md5">
+									<div class="layui-inline" style="margin-top: 6px;">
+										<div class="layui-input-inline" style="width: 160px;">
+											<input type="text" name="" placeholder="请输入账号或手机号" class="layui-input">
+										</div>
+										<button class="layui-btn layui-btn-primary">搜索</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="layui-col-md12">
+					<div style="margin:0 15px 15px 15px">
+						<div class="layui-row layui-col-space15">
+							<div class="layui-col-md6" onclick="display_mai1();">
+								<button class="layui-btn layui-btn-danger layui-btn-fluid layui-btn-radius">买</button>
+							</div>
+							<div class="layui-col-md6" onclick="display_mai2();">
+								<button class="layui-btn layui-btn-fluid layui-btn-radius">卖</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="content_mai1">
+			<table class="layui-table" lay-skin="line" align="center">
+				<tbody id="m2">
+					<tr>
+						<td>订单ID
+						</td>
+						<td>卖家ID
+						</td>
+						<td>单价
+						</td>
+						<td>个数
+						</td>
+						<td>总价
+						</td>
+						<td>时间
+						</td>
+						<td>
+							操作</button>
+						</td>
+					</tr>
+					<tr v-for="m2 in m2s">
+						<!-- <td>
+							<input type="checkbox" name="like1[write]" lay-skin="primary" checked>
+						</td> -->
+						<td>
+							<span>{{m2.order_id}}</span>
+						</td>
+						<td>
+							<span>{{m2.sell_id}}</span>
+						</td>
+						<td>
+							<span>{{m2.price}}</span>
+						</td>
+						<td>
+							<span>{{m2.number}}</span>
+						</td>
+						<td>
+							<span>{{m2.total}}</span>
+						</td>
+						<td>
+							<span>{{m2.create_time}}</span>
+						</td>
+						<td>
+							<button data-type="auto" class="mybuy layui-btn layui-btn-sm layui-btn-danger layui-btn-radius" v-on:click="lianxi(m2.sell_id,m2.order_id)">&emsp;购买&emsp;</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<button id="mybuy" data-type="auto" class="mybuy layui-btn layui-btn-danger layui-btn-fluid layui-btn-radius">我要购买</button>
+		</div>
+		<div id="content_mai2" style="display:none;">
+			<table class="layui-table" lay-skin="line" align="center">
+				<tbody id="m1">
+					<tr>
+						<td>订单ID
+						</td>
+						<td>买家ID
+						</td>
+						<td>单价
+						</td>
+						<td>个数
+						</td>
+						<td>总价
+						</td>
+						<td>时间
+						</td>
+						<td>
+							操作</button>
+						</td>
+					</tr>
+					<tr v-for="m1 in m1s">
+						<!-- <td>
+							<input type="checkbox" name="like1[write]" lay-skin="primary" checked>
+						</td> -->
+						<td>
+							<span>{{m1.order_id}}</span>
+						</td>
+						<td>
+							<span>{{m1.buy_id}}</span>
+						</td>
+						<td>
+							<span>{{m1.price}}</span>
+						</td>
+						<td>
+							<span>{{m1.number}}</span>
+						</td>
+						<td>
+							<span>{{m1.total}}</span>
+						</td>
+						<td>
+							<span>{{m1.create_time}}</span>
+						</td>
+						<td>
+							<button data-type="auto" class="mysell layui-btn layui-btn-sm layui-btn-radius" v-on:click="lianxi2(m1.buy_id,m1.order_id,m1.number,m1.price)">&emsp;出售&emsp;</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<button data-type="auto" id="mysell" class="mysell layui-btn layui-btn-fluid layui-btn-radius">我要出售</button>
+		</div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script>
+		//JavaScript代码区域
+		layui.use('element', function() {
+			var element = layui.element;
+			// alert(123123);
+		});
+		$.ajax({
+			async: false,
+			type: "GET",
+			url: "http://www.eintcoin.com/api/order/get_all_buy_order",
+			data: {
+				// oldPassword: document.form.oldpassword.value,
+				// newPassword: document.form.password2.value
+			},
+			dataType: "json",
+			async: false,
+			success: function(data) {
+				console.log(data);
+				// alert(data.length);
+				var mai1 = new Vue({
+					el: '#m1',
+					data: {
+						m1s: data
+					},
+					methods: {
+						lianxi2: function(sell_id, order_id, number, price) {
+							layer.open({
+								type: 2,
+								area: ['600px', '600px'],
+								fixed: false, //不固定
+								maxmin: true,
+								// content: ['http://www.eintcoin.com/demo.php','no']
+								content: ['{:url("info/mai_lianxi")}?id=' + sell_id + '&order_id=' + order_id + '&number=' + number + '&price=' + price, 'no']
+							});
+						}
+					}
+				})
+			},
+			error: function(err) {
+				console.log(err);
+			}
+		});
+		$.ajax({
+			async: false,
+			type: "GET",
+			url: "http://www.eintcoin.com/api/order/get_all_sell_order",
+			data: {
+				// oldPassword: document.form.oldpassword.value,
+				// newPassword: document.form.password2.value
+			},
+			dataType: "json",
+			async: false,
+			success: function(data) {
+				console.log(data);
+				// alert(data.length);
+				var mai1 = new Vue({
+					el: '#m2',
+					data: {
+						m2s: data
+					},
+					methods: {
+						lianxi: function(sell_id, order_id) {
+							layer.open({
+								type: 2,
+								area: ['600px', '600px'],
+								fixed: false, //不固定
+								maxmin: true,
+								// content: ['http://www.eintcoin.com/demo.php','no']
+								content: ['{:url("info/mai_review")}?id=' + sell_id + '&order_id=' + order_id, 'no']
+							});
+						}
+					}
+				})
+			},
+			error: function(err) {
+				console.log(err);
+			}
+		});
+		// 实时比价
+		$.ajax({
+			async: false,
+			type: "GET",
+			url: "http://www.eintcoin.com/Api/coin/price",
+			data: {
+				// oldPassword: document.form.oldpassword.value,
+				// newPassword: document.form.password2.value
+			},
+			dataType: "json",
+			async: false,
+			success: function(data) {
+				document.getElementById('x_jia').innerHTML = data;
+			},
+			error: function(err) {
+				console.log(err);
+			}
+		});
+		// 趋势
+		$.ajax({
+			async: false,
+			type: "GET",
+			url: "http://www.eintcoin.com/Api/Gethistorydata/data",
+			data: {},
+			dataType: "json",
+			async: false,
+			success: function(data) {
+				document.getElementById('max_jia').innerHTML = data[0].max;
+				document.getElementById('mix_jia').innerHTML = data[0].min;
+			},
+			error: function(err) {
+				console.log(err);
+			}
+		});
+		layui.use('layer', function() {
+			//	var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+			//触发事件
+			var othis = $(this)
+			var type = othis.data('type'),
+				text = othis.text();
+			$('#mybuy').on('click', function() {
+				layer.open({
+					type: 1,
+					skin: 'layui-layer-molv',
+					offset: type,
+					title: '我要买币',
+					content: '<div class="layui-layer-userinfo"><div class="layui-form-item"><label class="layui-form-label">价格</label><div class="layui-input-block"><input type="text" id="jia" required  lay-verify="required" placeholder="请输入价格" autocomplete="off" class="layui-input"></div></div><div class="layui-form-item"><label class="layui-form-label">数量</label><div class="layui-input-block"><input type="text" number="number" required  lay-verify="required" placeholder="请输入数量" autocomplete="off" class="layui-input"></div></div></div>',
+					scrollbar: false,
+					btn: '确认买出',
+					btnAlign: 'c',
+					shade: 0,
+					yes: function() {
+						// alert(document.getElementById('jia').value);
+						$.ajax({
+							async: false,
+							type: "POST",
+							url: "http://www.eintcoin.com/api/order/member_buy_coin",
+							data: {
+								price:2.8,
+								number:2
+							},
+							dataType: "json",
+							async: false,
+							success: function(data) {
+								layer.msg(data.msg);
+								console.log(data);
+								// alert(data);
+							},
+							error: function(err) {
+								console.log(err);
+							}
+						});
+						// console.log('请您及时联系该用户，尽快完成交易');
+						var t=setTimeout("layer.closeAll()",2000);
+
+					}
+				});
+				//iframe层-父子操作
+
+
+				// layer.open({
+				// 	type: 1,
+				// 	offset: type,
+				// 	title: '用户信息',
+				// 	content: '<div class="layui-layer-userinfo"><table class="layui-table" lay-skin="line"><tbody><tr><td>对方账号</td><td>hkuku123</td></tr><tr><td>联系方式</td><td>13621561231</td></tr><tr><td>常用QQ/微信</td><td>15452123214</td></tr></tbody></table><p>（请您及时联系该用户，尽快完成交易）</p></div>',
+				// 	scrollbar: false,
+				// 	btn: '已联系',
+				// 	btnAlign: 'c',
+				// 	shade: 0,
+				// 	yes: function() {
+				// 		console.log('联系成功');
+				// 		layer.closeAll();
+				// 		layer.open({
+				// 			type: 1,
+				// 			offset: type,
+				// 			title: '支付信息',
+				// 			content: '<div class="layui-layer-userinfo"><table class="layui-table" lay-skin="line"><tbody><tr><td>对方账号</td><td>hkuku123</td></tr><tr><td>联系方式</td><td>13621561231</td></tr><tr><td>常用QQ/微信</td><td>15452123214</td></tr><tr><td>银行卡号</td><td>627170000000000000</td></tr><tr><td>支付宝</td><td></td></tr><tr><td>微信</td><td></td></tr><tr><td>上传支付截图</td><td><input type="file" style="width:200px;"></input></td></tr></tbody></table></div>',
+				// 			scrollbar: false,
+				// 			btn: '确认支付',
+				// 			btnAlign: 'c',
+				// 			shade: 0,
+				// 			yes: function() {
+				// 				console.log('提交成功');
+				// 				layer.closeAll();
+				// 			}
+				// 		});
+				// 	}
+				// });
+			});
+
+			$('#mysell').on('click', function() {
+				layer.open({
+					type: 1,
+					skin: 'layui-layer-molv',
+					offset: type,
+					title: '我要卖币',
+					content: '<div class="layui-layer-userinfo"><div class="layui-form-item"><label class="layui-form-label">价格</label><div class="layui-input-block"><input type="text" id="jia" required  lay-verify="required" placeholder="请输入价格" autocomplete="off" class="layui-input"></div></div><div class="layui-form-item"><label class="layui-form-label">数量</label><div class="layui-input-block"><input type="text" number="number" required  lay-verify="required" placeholder="请输入数量" autocomplete="off" class="layui-input"></div></div></div>',
+					scrollbar: false,
+					btn: '确认卖出',
+					btnAlign: 'c',
+					shade: 0,
+					yes: function() {
+						// alert(document.getElementById('jia').value);
+						$.ajax({
+							async: false,
+							type: "POST",
+							url: "http://www.eintcoin.com/api/order/sell_member_coin",
+							data: {
+								price:2.8,
+								number:2
+							},
+							dataType: "json",
+							async: false,
+							success: function(data) {
+								console.log(data);
+								layer.msg(data.msg);
+								// alert(data);
+							},
+							error: function(err) {
+								console.log(err);
+							}
+						});
+						// console.log('请您及时联系该用户，尽快完成交易');
+						var t=setTimeout("layer.closeAll()",2000);
+					}
+				});
+				//默认prompt
+
+				// layer.prompt(function(val, index) {
+				// 	// layer.msg('得到了'+val);
+				// 	// layer.close(index);
+				// 	$.ajax({
+				// 		async: false,
+				// 		type: "POST",
+				// 		url: "http://www.eintcoin.com/Index/info/transaction_password",
+				// 		data: {
+				// 			// oldPassword: document.form.oldpassword.value,
+				// 			password: val
+				// 		},
+				// 		dataType: "json",
+				// 		async: false,
+				// 		success: function(data) {
+				// 			console.log(data);
+				// 			if (data == 3) {
+				// 				layer.msg('交易密码错误');
+				// 			} else {
+				// 				layer.closeAll();
+				// 				layer.open({
+				// 					type: 2,
+				// 					area: ['600px', '600px'],
+				// 					fixed: false, //不固定
+				// 					maxmin: true,
+				// 					// content: ['http://www.eintcoin.com/demo.php','no']
+				// 					content: ['{:url("info/mai_review")}?id='+ sell_id+'&order_id='+order_id,'no']
+				// 				});
+				// layer.open({
+				// 	type: 1,
+				// 	skin: 'layui-layer-molv',
+				// 	offset: type,
+				// 	title: '用户信息',
+				// 	content: '<div class="layui-layer-userinfo"><table class="layui-table" lay-skin="line"><tbody><tr><td>对方账号</td><td>hkuku123</td></tr><tr><td>联系方式</td><td>13621561231</td></tr><tr><td>常用QQ/微信</td><td>15452123214</td></tr></tbody></table><p>（请您及时联系该用户，尽快完成交易）</p></div>',
+				// 	scrollbar: false,
+				// 	btn: '确认出售',
+				// 	btnAlign: 'c',
+				// 	shade: 0,
+				// 	yes: function() {
+				// 		console.log('请您及时联系该用户，尽快完成交易');
+				// 		layer.closeAll();
+				// 	}
+				// });
+				// 			}
+				//
+				// 		},
+				// 		error: function(err) {
+				// 			console.log(err);
+				// 		}
+				// 	});
+				// });
+
+			});
+		});
+
+		function display(url) {
+			htmlobj = $.ajax({
+				url: url,
+				async: false
+			});
+			$("#bord").html(htmlobj.responseText);
+		}
+	</script>
+	<script>
+		function display_mai1() {
+			// alert(123123);
+			document.getElementById("content_mai1").style.display = "block";
+			document.getElementById("content_mai2").style.display = "none";
+		}
+
+		function display_mai2() {
+			document.getElementById("content_mai2").style.display = "block";
+			document.getElementById("content_mai1").style.display = "none";
+		}
+	</script>
+</body>
+{/block}

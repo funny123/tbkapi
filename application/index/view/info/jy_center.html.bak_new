@@ -1,0 +1,497 @@
+{extend name="public/index"} {block name="content"}
+
+<body class="layui-layout-body">
+	<style>
+		.layui-layer-userinfo .layui-table {
+			margin-top: -1px;
+		}
+
+		.layui-layer-userinfo p {
+			font-size: 12px;
+			color: #3e3e3e;
+			text-align: center;
+		}
+	</style>
+	<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+		<legend>交易中心</legend>
+	</fieldset>
+	<div class="layui-fluid">
+
+
+		<div class="layui-bg-gray">
+			<div class="layui-row">
+				<div class="layui-col-md12">
+					<div class="layui-card" style="margin:15px">
+						<div class="layui-card-body">
+							<div class="layui-row">
+								<div class="layui-col-md3">
+									<h2 style="margin-top: 16px;">现价：110</h2>
+								</div>
+								<div class="layui-col-md4">
+									高:11 量：121
+									<br>低:11 量：121
+								</div>
+								<div class="layui-col-md5">
+									<div class="layui-inline" style="margin-top: 6px;">
+										<div class="layui-input-inline" style="width: 160px;">
+											<input type="text" name="" placeholder="请输入账号或手机号" class="layui-input">
+										</div>
+										<button class="layui-btn layui-btn-primary">搜索</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="layui-col-md12">
+					<div style="margin:0 15px 15px 15px">
+						<div class="layui-row layui-col-space15">
+							<div class="layui-col-md6" onclick="display_mai1();">
+								<button class="layui-btn layui-btn-danger layui-btn-fluid layui-btn-radius">买</button>
+							</div>
+							<div class="layui-col-md6" onclick="display_mai2();">
+								<button class="layui-btn layui-btn-fluid layui-btn-radius">卖</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="content_mai1">
+			<table class="layui-table" lay-skin="line" align="center">
+				<tbody>
+					<tr>
+						<td>
+							<input type="checkbox" name="like1[write]" lay-skin="primary" checked>
+						</td>
+						<td>交易
+							<span>8</span>
+						</td>
+						<td>好评：
+							<span>1</span>
+						</td>
+						<td>
+							<span>买10币/$15</span>
+						</td>
+						<td>信任
+							<span>3</span>
+						</td>
+						<td>总价：
+							<span>20</span>
+						</td>
+						<td>
+							<button data-type="auto" class="mybuy layui-btn layui-btn-sm layui-btn-danger layui-btn-radius">&emsp;购买&emsp;</button>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="checkbox" name="like1[write]" lay-skin="primary" checked>
+						</td>
+						<td>交易
+							<span>8</span>
+						</td>
+						<td>好评：
+							<span>1</span>
+						</td>
+						<td>
+							<span>买10币/$15</span>
+						</td>
+						<td>信任
+							<span>3</span>
+						</td>
+						<td>总价：
+							<span>20</span>
+						</td>
+						<td>
+							<button data-type="auto" class="mybuy layui-btn layui-btn-sm layui-btn-danger layui-btn-radius">&emsp;购买&emsp;</button>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="checkbox" name="like1[write]" lay-skin="primary" checked>
+						</td>
+						<td>交易
+							<span>8</span>
+						</td>
+						<td>好评：
+							<span>1</span>
+						</td>
+						<td>
+							<span>买10币/$15</span>
+						</td>
+						<td>信任
+							<span>3</span>
+						</td>
+						<td>总价：
+							<span>20</span>
+						</td>
+						<td>
+							<button data-type="auto" class="mybuy layui-btn layui-btn-sm layui-btn-danger layui-btn-radius">&emsp;购买&emsp;</button>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="checkbox" name="like1[write]" lay-skin="primary" checked>
+						</td>
+						<td>交易
+							<span>8</span>
+						</td>
+						<td>好评：
+							<span>1</span>
+						</td>
+						<td>
+							<span>买10币/$15</span>
+						</td>
+						<td>信任
+							<span>3</span>
+						</td>
+						<td>总价：
+							<span>20</span>
+						</td>
+						<td>
+							<button data-type="auto" class="mybuy layui-btn layui-btn-sm layui-btn-danger layui-btn-radius">&emsp;购买&emsp;</button>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="checkbox" name="like1[write]" lay-skin="primary" checked>
+						</td>
+						<td>交易
+							<span>8</span>
+						</td>
+						<td>好评：
+							<span>1</span>
+						</td>
+						<td>
+							<span>买10币/$15</span>
+						</td>
+						<td>信任
+							<span>3</span>
+						</td>
+						<td>总价：
+							<span>20</span>
+						</td>
+						<td>
+							<button data-type="auto" class="mybuy layui-btn layui-btn-sm layui-btn-danger layui-btn-radius">&emsp;购买&emsp;</button>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="checkbox" name="like1[write]" lay-skin="primary" checked>
+						</td>
+						<td>交易
+							<span>8</span>
+						</td>
+						<td>好评：
+							<span>1</span>
+						</td>
+						<td>
+							<span>买10币/$15</span>
+						</td>
+						<td>信任
+							<span>3</span>
+						</td>
+						<td>总价：
+							<span>20</span>
+						</td>
+						<td>
+							<button data-type="auto" class="mybuy layui-btn layui-btn-sm layui-btn-danger layui-btn-radius">&emsp;购买&emsp;</button>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="checkbox" name="like1[write]" lay-skin="primary" checked>
+						</td>
+						<td>交易
+							<span>8</span>
+						</td>
+						<td>好评：
+							<span>1</span>
+						</td>
+						<td>
+							<span>买10币/$15</span>
+						</td>
+						<td>信任
+							<span>3</span>
+						</td>
+						<td>总价：
+							<span>20</span>
+						</td>
+						<td>
+							<button data-type="auto" class="mybuy layui-btn layui-btn-sm layui-btn-danger layui-btn-radius">&emsp;购买&emsp;</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<button data-type="auto" class="mybuy layui-btn layui-btn-danger layui-btn-fluid layui-btn-radius">我要购买</button>
+		</div>
+		<div id="content_mai2" style="display:none;">
+			<table class="layui-table" lay-skin="line" align="center">
+				<tbody>
+					<tr>
+						<td>
+							<input type="checkbox" name="like1[write]" lay-skin="primary" checked>
+						</td>
+						<td>交易2
+							<span>8</span>
+						</td>
+						<td>好评2：
+							<span>1</span>
+						</td>
+						<td>信任2
+							<span>3</span>
+						</td>
+						<td>总价2：
+							<span>20</span>
+						</td>
+						<td>
+							<button data-type="auto" class="mysell layui-btn layui-btn-sm layui-btn-radius">&emsp;出售&emsp;</button>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="checkbox" name="like1[write]" lay-skin="primary" checked>
+						</td>
+						<td>交易2
+							<span>8</span>
+						</td>
+						<td>好评2：
+							<span>1</span>
+						</td>
+						<td>信任2
+							<span>3</span>
+						</td>
+						<td>总价2：
+							<span>20</span>
+						</td>
+						<td>
+							<button data-type="auto" class="mysell layui-btn layui-btn-sm layui-btn-radius">&emsp;出售&emsp;</button>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="checkbox" name="like1[write]" lay-skin="primary" checked>
+						</td>
+						<td>交易2
+							<span>8</span>
+						</td>
+						<td>好评2：
+							<span>1</span>
+						</td>
+						<td>信任2
+							<span>3</span>
+						</td>
+						<td>总价2：
+							<span>20</span>
+						</td>
+						<td>
+							<button data-type="auto" class="mysell layui-btn layui-btn-sm layui-btn-radius">&emsp;出售&emsp;</button>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="checkbox" name="like1[write]" lay-skin="primary" checked>
+						</td>
+						<td>交易2
+							<span>8</span>
+						</td>
+						<td>好评2：
+							<span>1</span>
+						</td>
+						<td>信任2
+							<span>3</span>
+						</td>
+						<td>总价2：
+							<span>20</span>
+						</td>
+						<td>
+							<button data-type="auto" class="mysell layui-btn layui-btn-sm layui-btn-radius">&emsp;出售&emsp;</button>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="checkbox" name="like1[write]" lay-skin="primary" checked>
+						</td>
+						<td>交易2
+							<span>8</span>
+						</td>
+						<td>好评2：
+							<span>1</span>
+						</td>
+						<td>信任2
+							<span>3</span>
+						</td>
+						<td>总价2：
+							<span>20</span>
+						</td>
+						<td>
+							<button data-type="auto" class="mysell layui-btn layui-btn-sm layui-btn-radius">&emsp;出售&emsp;</button>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="checkbox" name="like1[write]" lay-skin="primary" checked>
+						</td>
+						<td>交易2
+							<span>8</span>
+						</td>
+						<td>好评2：
+							<span>1</span>
+						</td>
+						<td>信任2
+							<span>3</span>
+						</td>
+						<td>总价2：
+							<span>20</span>
+						</td>
+						<td>
+							<button data-type="auto" class="mysell layui-btn layui-btn-sm layui-btn-radius">&emsp;出售&emsp;</button>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="checkbox" name="like1[write]" lay-skin="primary" checked>
+						</td>
+						<td>交易2
+							<span>8</span>
+						</td>
+						<td>好评2：
+							<span>1</span>
+						</td>
+						<td>信任2
+							<span>3</span>
+						</td>
+						<td>总价2：
+							<span>20</span>
+						</td>
+						<td>
+							<button data-type="auto" class="mysell layui-btn layui-btn-sm layui-btn-radius">&emsp;出售&emsp;</button>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="checkbox" name="like1[write]" lay-skin="primary" checked>
+						</td>
+						<td>交易
+							<span>8</span>
+						</td>
+						<td>好评：
+							<span>1</span>
+						</td>
+						<td>信任
+							<span>3</span>
+						</td>
+						<td>总价：
+							<span>20</span>
+						</td>
+						<td>
+							<button data-type="auto" class="mysell layui-btn layui-btn-sm layui-btn-radius">&emsp;出售&emsp;</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<button data-type="auto" class="mysell layui-btn layui-btn-fluid layui-btn-radius">我要出售</button>
+		</div>
+	</div>
+	<script>
+		//JavaScript代码区域
+		layui.use('element', function () {
+			var element = layui.element;
+			// alert(123123);
+		});
+		layui.use('layer', function () {
+			//	var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+			//触发事件  
+			var othis = $(this)
+			var type = othis.data('type'),text = othis.text();
+			$('.mybuy').on('click', function () {
+				layer.open({
+					type: 1,
+					offset: type,
+					title: '用户信息',
+					content: '<div class="layui-layer-userinfo"><table class="layui-table" lay-skin="line"><tbody><tr><td>对方账号</td><td>hkuku123</td></tr><tr><td>联系方式</td><td>13621561231</td></tr><tr><td>常用QQ/微信</td><td>15452123214</td></tr></tbody></table><p>（请您及时联系该用户，尽快完成交易）</p></div>',
+					scrollbar: false,
+					btn: '已联系',
+					btnAlign: 'c',
+					shade: 0,
+					yes: function () {
+						console.log('联系成功');
+						layer.closeAll();
+						layer.open({
+							type: 1,
+							offset: type,
+							title: '支付信息',
+							content: '<div class="layui-layer-userinfo"><table class="layui-table" lay-skin="line"><tbody><tr><td>对方账号</td><td>hkuku123</td></tr><tr><td>联系方式</td><td>13621561231</td></tr><tr><td>常用QQ/微信</td><td>15452123214</td></tr><tr><td>银行卡号</td><td>627170000000000000</td></tr><tr><td>支付宝</td><td></td></tr><tr><td>微信</td><td></td></tr><tr><td>上传支付截图</td><td><input type="file" style="width:200px;"></input></td></tr></tbody></table></div>',
+							scrollbar: false,
+							btn: '确认支付',
+							btnAlign: 'c',
+							shade: 0,
+							yes: function () {
+								console.log('提交成功');
+								layer.closeAll();
+							}
+						});
+					}
+				});
+			});
+
+			$('.mysell').on('click', function () {
+				layer.open({
+					type: 1,
+					skin: 'layui-layer-molv',
+					offset: type,
+					title: '交易密码',
+					content: '<div class="layui-layer-pwd"><input type="text" name="kj_pwd" autocomplete="off" class="layui-input"></div>',
+					scrollbar: false,
+					btn: '确认',
+					btnAlign: 'c',
+					shade: 0,
+					yes: function () {
+						console.log('密码输入成功');
+						layer.closeAll();
+						layer.open({
+							type: 1,
+							skin: 'layui-layer-molv',
+							offset: type,
+							title: '用户信息',
+							content: '<div class="layui-layer-userinfo"><table class="layui-table" lay-skin="line"><tbody><tr><td>对方账号</td><td>hkuku123</td></tr><tr><td>联系方式</td><td>13621561231</td></tr><tr><td>常用QQ/微信</td><td>15452123214</td></tr></tbody></table><p>（请您及时联系该用户，尽快完成交易）</p></div>',
+							scrollbar: false,
+							btn: '确认出售',
+							btnAlign: 'c',
+							shade: 0,
+							yes: function () {
+								console.log('请您及时联系该用户，尽快完成交易');
+								layer.closeAll();
+							}
+						});
+					}
+				});
+			});
+		});
+
+
+
+
+		function display(url) {
+			htmlobj = $.ajax({
+				url: url,
+				async: false
+			});
+			$("#bord").html(htmlobj.responseText);
+		}
+	</script>
+	<script>
+		function display_mai1() {
+			// alert(123123);
+			document.getElementById("content_mai1").style.display = "block";
+			document.getElementById("content_mai2").style.display = "none";
+		}
+
+		function display_mai2() {
+			document.getElementById("content_mai2").style.display = "block";
+			document.getElementById("content_mai1").style.display = "none";
+		}
+	</script>
+</body>
+{/block}

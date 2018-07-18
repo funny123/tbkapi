@@ -1,0 +1,141 @@
+{extend name="public/index"} {block name="content"}
+
+<body class="layui-layout-body">
+  <style>
+    .radius20 {
+      border-radius: 20px;
+    }
+
+    .layui-elem-field .layui-row {
+      margin: 20px 30px 10px;
+    }
+  </style>
+  <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+    <legend>实名认证</legend>
+  </fieldset>
+  <div class="layui-fluid">
+    <div class="layui-row">
+      <div class="layui-col-xs12">
+        <form class="layui-form" action="{:url('renzhengform')}" method="post" enctype="multipart/form-data">
+          <div class="layui-form-item">
+            <label class="layui-form-label">姓 名</label>
+            <div class="layui-input-inline">
+              <input type="text" name="name" required lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input"
+                value="{if condition='isset($data.name)'}{$data.name}{/if}">
+            </div>
+            <span style="color: red">{if condition="isset($message.name)"}{$message.name}{/if}</span>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">身份证</label>
+            <div class="layui-input-inline">
+              <input type="text" name="person_id" required lay-verify="required" placeholder="请输入身份证号" autocomplete="off" class="layui-input"
+                value="{if condition='isset($data.person_id)'}{$data.person_id}{/if}">
+            </div>
+            <span style="color: red">{if condition="isset($message.person_id)"}{$message.person_id}{/if}</span>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">银行卡号</label>
+            <div class="layui-input-inline">
+              <input type="text" name="bank_id" required lay-verify="required" placeholder="请输入银行卡号" autocomplete="off" class="layui-input"
+                value="{if condition='isset($data.bank_id)'}{$data.bank_id}{/if}">
+            </div>
+            <span style="color: red">{if condition="isset($message.bank_id)"}{$message.bank_id}{/if}</span>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">银行预留手机号</label>
+            <div class="layui-input-inline">
+              <input type="text" name="bank_mobile" required lay-verify="required" placeholder="请输入银行预留手机号" autocomplete="off" class="layui-input"
+                value="{if condition='isset($data.bank_mobile)'}{$data.bank_mobile}{/if}">
+            </div>
+            <span style="color: red">{if condition="isset($message.bank_mobile)"}{$message.bank_mobile}{/if}</span>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">交易密码</label>
+            <div class="layui-input-inline">
+              <input type="text" name="transaction_password" required lay-verify="required" placeholder="请输入6位数字交易密码" autocomplete="off"
+                class="layui-input" value="{if condition='isset($data.transaction_password)'}{$data.transaction_password}{/if}">
+            </div>
+            <span style="color: red">{if condition="isset($message.transaction_password)"}{$message.transaction_password}{/if}</span>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">手持身份证银行卡照片</label>
+            <div class="layui-input-inline">
+              <div class="layui-upload">
+                <input type="file" name="person_img">
+              </div>
+            </div>
+            <div class="layui-form-mid layui-word-aux" style="color: red;">图片最大尺寸1M</div>
+            <span style="color: red">{if condition="isset($imgMessage)"}{$imgMessage}{/if}</span>
+            <span style="color: red">{if condition="isset($message.person_img)"}{$message.person_img}{/if}</span>
+          </div>
+          <div class="layui-form-item">
+            <div class="layui-input-block">
+              <button class="layui-btn" type="submit" lay-submit lay-filter="formDemo">立即提交</button>
+              <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+
+    <div class="layui-row">
+
+      <div class="layui-col-xs12">
+        <fieldset class="layui-elem-field">
+          <legend>认证结果</legend>
+          <div class="layui-row">
+            <div class="layui-col-xs12 layui-col-sm10 layui-col-sm-offset1 layui-col-md8 layui-col-md-offset2 layui-col-lg6 layui-col-lg-offset3">
+              <table class="layui-table radius20">
+                <colgroup>
+                  <col width="50%">
+                  <col width="50%">
+                  <col>
+                </colgroup>
+                <tbody>
+                  <tr>
+                    <td align="right">姓名</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td align="right">身份证</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td align="right">银行卡号</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td align="right">银行预留手机号</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td align="right">交易密码</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td align="right">备注</td>
+                    <td>已认证</td>
+                  </tr>
+                  <tr>
+                    <td align="right">备注</td>
+                    <td>审核中</td>
+                  </tr>
+                  <tr>
+                    <td align="right">备注</td>
+                    <td>未通过（信息不全）</td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" align="center">
+                      <button class="layui-btn layui-btn-primary layui-btn-radius">点击修改</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+  {/block}

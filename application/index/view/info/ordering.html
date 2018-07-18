@@ -1,0 +1,104 @@
+{extend name="public/index"} {block name="content"}
+
+<body class="layui-layout-body">
+  <style>
+  .layui-table thead tr{
+    background-color: white;
+  }
+  .layui-layer-userinfo .layui-table {
+    margin-top: -1px;
+  }
+	</style>
+  <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+    <legend>执行中订单</legend>
+  </fieldset>
+  <div>
+    <div class="layui-fluid layui-bg-gray">
+      <div class="layui-row layui-col-space20" style="padding: 20px 10px;">
+        <div class="layui-col-md12">
+          <table class="layui-table" lay-skin="line">
+            <thead>
+              <tr>
+                <th>订单号</th>
+                <th>对方账户</th>
+                <th>支付单价</th>
+                <th>数量</th>
+                <th>支付金额</th>
+                <th>订单状态</th>
+                <th>订单时间</th>
+                <th>收款时间</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>154212156</td>
+                <td>张三</td>
+                <td>20</td>
+                <td>100</td>
+                <td>2000</td>
+                <td>支付成功</td>
+                <td>2018-03-26</td>
+                <td>2018-03-27</td>
+                <td><button data-type="auto"  class="payee layui-btn layui-btn-primary layui-btn-xs">查看确认</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    //JavaScript代码区域
+    layui.use('element', function () {
+      var element = layui.element;
+      // alert(123123);
+    });
+    layui.use('layer', function () {
+			//	var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+			//触发事件  
+			var othis = $(this)
+			var type = othis.data('type'),text = othis.text();
+			$('.payee').on('click', function () {
+				layer.open({
+          type: 1,
+          offset: type,
+          title: '订单信息',
+          content: '<div class="layui-layer-userinfo"><table class="layui-table" lay-skin="line"><tbody><tr><td>对方账号</td><td>Khuhuhu</td></tr><tr><td>联系方式</td><td>18913191234</td></tr><tr><td>订单号</td><td>Km6678***</td></tr><tr><td>订单创建时间</td><td>2018-03-16 15:20:36</td></tr><tr><td>支付时间</td><td>2018-03-16 15:20:36</td></tr><tr><td>数量</td><td>200个</td></tr><tr><td>单价</td><td>5元</td></tr><tr><td>支付状态</td><td>买家已支付</td></tr><tr><td>支付截图</td><td></td></tr></tbody></table></div>',
+          scrollbar: false,
+          btn: '确认收款',
+          btnAlign: 'c',
+          shade: 0,
+          yes: function () {
+            console.log('已确认');
+            layer.closeAll();
+            layer.open({
+              type: 1,
+              //skin: 'layui-layer-molv',
+              offset: type,
+              title: '交易密码',
+              content: '<div class="layui-layer-pwd"><input type="text" name="kj_pwd" autocomplete="off" class="layui-input"></div>',
+              scrollbar: false,
+              btn: '确认',
+              btnAlign: 'c',
+              shade: 0,
+              yes: function () {
+                console.log('确认收款失败');
+                layer.msg('密码错误');
+              }
+            });
+          }
+        });
+      });
+    });
+
+    function display(url) {
+      htmlobj = $.ajax({
+        url: url,
+        async: false
+      });
+      $("#bord").html(htmlobj.responseText);
+    }
+  </script>
+</body>
+{/block}

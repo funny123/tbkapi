@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr><th>用户名</th><td>{$Think.session.user.account}</td></tr>
+    <tr><th>手机号码</th><td>{$Think.session.user.mobile}</td></tr>
+    <tr><th>常用QQ</th><td>{if condition="is_null($Think.session.user.qq)"}未设置{else /}{$Think.session.user.qq}{/if}</td></tr>
+    <tr><th>微信号</th><td>{if condition="is_null($Think.session.user.wechat)"}未设置{else /}{$Think.session.user.wechat}{/if}</td></tr>
+    <tr><th>用户状态</th><td>{if condition="$Think.session.user.status == 1"}正常{else /}禁用{/if}</td></tr>
+    <tr><a href="{:url('edit_info')}">修改个人信息</a></tr>
+</table>
+</body>
+</html>

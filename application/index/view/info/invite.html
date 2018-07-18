@@ -1,0 +1,30 @@
+{extend name="public/index"}
+{block name="content"}
+<button type="button" class="layui-btn" onclick="create();">生成邀请码</button>
+<!-- <img id="img_invite" src="" alt=""> -->
+<div>你的邀请码链接：<span id="invite_link"></span></div>
+<script>
+  function create(){
+    $.ajax({
+      async: false,
+      type: "GET",
+      url: "http://www.eintcoin.com/Index/info/getInvite",
+      data: {
+        // oldPassword: document.form.oldpassword.value,
+        // newPassword: document.form.password2.value
+      },
+      dataType: "json",
+      async: false,
+      success: function(data) {
+        // var json = JSON.stringify(data);
+        // alert(data);
+      document.getElementById('invite_link').innerHTML = data.inviteCode;
+      },
+      error: function(err) {
+        console.log(err);
+      }
+    });
+
+  }
+</script>
+{/block}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <span style="color: red">{if condition="isset($fileMessage)"}{$fileMessage}{/if}</span>
+    {if condition="isset($orderDataDetail)"}
+    用户名：<span>{$orderDataDetail.account}</span><br>
+    联系方式: <span>{$orderDataDetail.mobile}</span><br>
+    银行卡号: <span>{$orderDataDetail.bank_id}</span><br>
+    常用QQ： <span>{if condition="isset($orderDataDetail.qq)"}{$orderDataDetail.qq}{else /}暂无{/if}</span><br>
+    常用微信： <span>{if condition="isset($orderDataDetail.wechat)"}{$orderDataDetail.wechat}{else /}暂无{/if}</span> <br>
+    <form action="{:url('my_buy_detail')}" method="post" enctype="multipart/form-data">
+        <input type="file" name="pay_img"> <br>
+        <input type="hidden" value="{$orderDataDetail.id}" name="id"> <br>
+        <input type="submit" value="已付款">
+    </form>
+    {/if}
+</body>
+</html>

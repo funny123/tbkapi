@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>需求大厅</title>
+</head>
+<body>
+<table>
+    <tr><th>用户名</th><th>数量</th><th>单价</th><th>总价</th><th>操作</th></tr>
+    {if condition="isset($sellOrder)"}
+    {foreach $sellOrder as $v}
+    <tr><td>{$v.account}</td><td>{$v.number}</td><td>{$v.price}</td><td>{$v.number*$v.price}</td><td><a href="{:url('my_buy',['id'=>$v.id])}">购买</a></td></tr>
+    {/foreach}
+    {/if}
+</table>
+</body>
+</html>

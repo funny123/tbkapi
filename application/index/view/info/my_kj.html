@@ -1,0 +1,185 @@
+{extend name="public/index"} {block name="content"}
+
+<body class="layui-layout-body">
+	<style>
+		
+		.layui-table thead tr {
+			background-color: white;
+		}
+
+		.layui-btn-green {
+			background-color: white;
+			color: green;
+		}
+
+		.layui-btn-green:hover {
+			color: green;
+		}
+
+		.layui-btn-danger {
+			background-color: white;
+			color: red;
+		}
+
+		.layui-btn-danger:hover {
+			color: red;
+		}
+		.code h1{
+			font-size: 36px;
+		}
+	</style>
+	<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+		<legend>我的矿机</legend>
+	</fieldset>
+	<div class="layui-fluid">
+		<div class=" layui-bg-gray">
+			<div class="layui-row" style="padding: 15px 30px">
+				<div class="layui-col-md3 layui-col-md-offset2">
+					<div class="layui-card radius10">
+						<div class="layui-card-header" style="text-align: center;">
+							产量总计
+						</div>
+					</div>
+						<div class="layui-card-body layui-bg-gray" style="text-align: center;">
+							<div class="code">
+								<h1>
+									<span>100</span>
+								</h1>
+							</div>
+						</div>
+				</div>
+				<div class="layui-col-md3 layui-col-md-offset2">
+					<div class="layui-card  radius10">
+						<div class="layui-card-header" style="text-align: center;">
+							算力总计
+						</div>
+					</div>
+						<div class="layui-card-body layui-bg-gray" style="text-align: center;">
+							<div class="code">
+								<h1>
+									<span>10</span>
+								</h1>
+							</div>
+					</div>
+				</div>
+			</div>
+			<div class="layui-row" style="padding: 15px 30px;text-align:center;">
+				<div id="yun2" class="layui-btn layui-btn-green" onclick="yun();">运行中的矿机</div>
+				<div id="gq2" class="layui-btn layui-btn-danger" onclick="gq();" style="background-color: #ccc;">已过期矿机</div>
+			</div>
+			<div class="layui-row" style="padding: 0 30px 15px 30px">
+				<div class="layui-col-md12">
+					<div id="table_kj_yun">
+						<table class="layui-table" lay-skin="line">
+							<thead>
+								<tr>
+									<th>状态</th>
+									<th>机号</th>
+									<th>类型</th>
+									<th>起购日期</th>
+									<th>剩余天数</th>
+									<th>当日算力</th>
+									<th>当日产量</th>
+									<th>下次领取</th>
+								</tr>
+							</thead>
+							<tbody id="zc">
+								<tr>
+									<td>正常</td>
+									<td>Gt105</td>
+									<td>体验</td>
+									<td>2018-04-03</td>
+									<td>16天5小时6分</td>
+									<td>0.1</td>
+									<td>0.1</td>
+									<td>2018-11-29</td>
+								</tr>
+								<tr>
+									<td>正常</td>
+									<td>Gt105</td>
+									<td>体验</td>
+									<td>2018-04-03</td>
+									<td>16天5小时6分</td>
+									<td>0.1</td>
+									<td>0.1</td>
+									<td>2018-11-29</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div id="table_kj_gq">
+						<table class="layui-table" lay-skin="line">
+							<thead>
+								<tr>
+									<th>状态</th>
+									<th>机号</th>
+									<th>类型</th>
+									<th>起购日期</th>
+									<th>剩余天数</th>
+									<th>当日算力</th>
+									<th>当日产量</th>
+									<th>下次领取</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>已过期</td>
+									<td>Gt105</td>
+									<td>体验</td>
+									<td>2018-04-03</td>
+									<td>16天5小时6分</td>
+									<td>0.1</td>
+									<td>0.1</td>
+									<td>2018-11-29</td>
+								</tr>
+								<tr>
+									<td>已过期</td>
+									<td>Gt105</td>
+									<td>体验</td>
+									<td>2018-04-03</td>
+									<td>16天5小时6分</td>
+									<td>0.1</td>
+									<td>0.1</td>
+									<td>2018-11-29</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="../layui/layui.js"></script>
+	<script src="../layui/jquery-2.0.3.min.js"></script>
+	<script>
+		//JavaScript代码区域
+		layui.use('element', function () {
+			var element = layui.element;
+			// alert(123123);
+		});
+
+		function display(url) {
+			htmlobj = $.ajax({
+				url: url,
+				async: false
+			});
+			$("#bord").html(htmlobj.responseText);
+		}
+	</script>
+	<script>
+		function yun() {
+			document.getElementById("table_kj_gq").style.display = "none";
+			document.getElementById("table_kj_yun").style.display = "block";
+			document.getElementById("yun2").style.backgroundColor = "#fff";
+			document.getElementById("gq2").style.backgroundColor = "#ccc";
+		}
+
+		function gq() {
+			document.getElementById("table_kj_gq").style.display = "block";
+			document.getElementById("table_kj_yun").style.display = "none";
+			document.getElementById("gq2").style.backgroundColor = "#fff";
+			document.getElementById("yun2").style.backgroundColor = "#ccc";
+		}
+	</script>
+</body>
+{/block}

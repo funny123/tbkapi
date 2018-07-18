@@ -1,0 +1,46 @@
+{include file="public/header" /}
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <button type="button" class="layui-btn" id="test1">
+  <i class="layui-icon">&#xe67c;</i>上传文件
+</button>
+<button type="button" class="layui-btn" id="dump" style="display:none;">
+<i class="layui-icon">&#xe67c;</i>导入中...
+</button>
+
+        <script src="/static/layui/layui.js"></script>
+        <script>
+            layui.use('upload', function() {
+                var upload = layui.upload;
+
+                //执行实例
+                var uploadInst = upload.render({
+                    elem: '#test1' //绑定元素
+                        ,
+                    url: '{:url('doxls')}' //上传接口
+                    ,
+                    exts: 'xls',
+                    before: function(obj) { //obj参数包含的信息，跟 choose回调完全一致，可参见上文。
+                        layer.load(); //上传loading
+                    },
+                    done: function(res) {
+                        //上传完毕回调
+                        //上传完毕回调
+                        layer.closeAll('loading'); //关闭loading
+                        if(res.code==201){
+                           document.getElementById('dump').style.display = 'block';
+                        }
+                    },
+                    error: function() {
+                        //请求异常回调
+                        layer.closeAll('loading'); //关闭loading
+                    }
+                });
+            });
+        </script>
+    </div>
+    {include file="public/footer" /}
+</body>
+
+</html>

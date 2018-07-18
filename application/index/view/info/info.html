@@ -1,0 +1,91 @@
+{extend name="public/index"} {block name="content"}
+
+<body class="layui-layout-body">
+  <style>
+    .radius20 {
+      border-radius: 20px;
+    }
+  </style>
+  <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+    <legend>个人信息</legend>
+  </fieldset>
+  <div class="layui-fluid">
+    <div class="layui-bg-gray">
+      <div class="layui-row ">
+        <div class="layui-col-xs12 layui-col-sm10 layui-col-sm-offset1 layui-col-md8 layui-col-md-offset2 layui-col-lg6 layui-col-lg-offset3">
+          <table class="layui-table radius20">
+            <colgroup>
+              <col width="50%">
+              <col width="50%">
+              <col>
+            </colgroup>
+            <tbody>
+              <tr>
+                <td align="right">用户名</td>
+                <td>{$Think.session.user.account}</td>
+              </tr>
+              <tr>
+                <td align="right">手机号</td>
+                <td>{$Think.session.user.mobile}</td>
+              </tr>
+              <tr>
+                <td align="right">常用QQ</td>
+                <td>{if condition="is_null($Think.session.user.qq)"}<button data-type="auto" class="setqq layui-btn layui-btn-sm">点击设置</button>{else /}{$Think.session.user.qq}{/if}</td>
+              </tr>
+              <tr>
+                <td align="right">微信号</td>
+                <td>{if condition="is_null($Think.session.user.wechat)"}<button data-type="auto" class="setwx layui-btn layui-btn-sm">点击设置</button>{else /}{$Think.session.user.wechat}{/if}</td>
+              </tr>
+              <tr>
+                <td align="right">状态</td>
+                <td>{if condition="$Think.session.user.status == 1"}正常{else /}禁用{/if}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+  </div>
+  <script>
+    //JavaScript代码区域
+    layui.use('element', function () {
+      var element = layui.element;
+    });
+    layui.use('layer', function () {
+      //	var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+      //触发事件  
+      var othis = $(this)
+      var type = othis.data('type'),
+        text = othis.text();
+      $('.setqq').on('click', function () {
+        layer.prompt({
+          title: '请输入QQ号码',
+          formType: 0
+        }, function (value, index) {
+          layer.close(index);
+          layer.msg('QQ设置成功');
+        });
+      });
+      $('.setwx').on('click', function () {
+        layer.prompt({
+          title: '请输入微信号码',
+          formType: 0
+        }, function (value, index) {
+          layer.close(index);
+          layer.msg('微信设置成功');
+        });
+      });
+    });
+
+    function display(url) {
+      htmlobj = $.ajax({
+        url: url,
+        async: false
+      });
+      $("#bord").html(htmlobj.responseText);
+    }
+  </script>
+</body>
+{/block}

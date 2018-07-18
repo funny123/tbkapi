@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<span style="color: red">{if condition="isset($imgMessage)"}{$imgMessage}{/if}</span>
+<form action="{:url('certification')}" method="post" enctype="multipart/form-data">
+    真实姓名：<input type="text" name="name" value="">
+    <span style="color: red">{if condition="isset($message.name)"}{$message.name}{/if}</span>
+    <br>
+    身份证号码：<input type="text" name="person_id" value="{if condition='isset($data.person_id)'}{$data.person_id}{/if}">
+    <span style="color: red">{if condition="isset($message.person_id)"}{$message.person_id}{/if}</span>
+    <br>
+    交易密码：<input type="text" name="transaction_password" value="{if condition='isset($data.transaction_password)'}{$data.transaction_password}{/if}">
+    <span style="color: red">{if condition="isset($message.transaction_password)"}{$message.transaction_password}{/if}</span>
+    <br>
+    银行卡预留手机号码：<input type="text" name="bank_mobile" value="{if condition='isset($data.bank_mobile)'}{$data.bank_mobile}{/if}">
+    <span style="color: red">{if condition="isset($message.bank_mobile)"}{$message.bank_mobile}{/if}</span>
+    <br>
+    身份证图片上传：<input type="file" name="person_img" value="{if condition='isset($data.person_img)'}{$data.person_img}{/if}">
+    <span>图片最大上传1M</span>
+    <span style="color: red">{if condition="isset($message.person_img)"}{$message.person_img}{/if}</span>
+    <br>
+    <input type="submit" value="确认修改">
+</form>
+</body>
+</html>

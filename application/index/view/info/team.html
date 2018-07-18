@@ -1,0 +1,46 @@
+
+{extend name="public/index"}
+{block name="content"}<body class="layui-layout-body">
+	分级信息
+	<div>
+		<table class="layui-table">
+  <colgroup>
+    <col width="150">
+    <col width="200">
+    <col>
+  </colgroup>
+  <thead>
+    <tr>
+      <th>等级</th>
+      <th>人数</th>
+      <th>货币总量</th>
+      <th>矿机日总产能</th>
+      <th>操作</th>
+    </tr> 
+  </thead>
+  <tbody>
+    <tr>
+      <td>A级</td>
+      <td>50</td>
+      <td>3000</td>
+      <td>300</td>
+      <td>查看详情</td>
+    </tr>
+  </tbody>
+</table>
+	</div>
+<script src="../layui/layui.js"></script>
+<script src="../layui/jquery-2.0.3.min.js"></script>
+<script>
+//JavaScript代码区域
+layui.use('element', function(){
+  var element = layui.element;
+  // alert(123123);
+});
+function display(url){
+  htmlobj=$.ajax({url:url,async:false});
+  $("#bord").html(htmlobj.responseText);
+}
+</script>
+</body>
+{/block}

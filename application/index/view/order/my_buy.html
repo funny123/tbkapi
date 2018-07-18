@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="">
+    {if condition="isset($orderData)"}
+    用户名：<span>{$orderData.account}</span><br>
+    联系方式: <span>{$orderData.mobile}</span><br>
+    常用QQ： <span>{if condition="isset($orderData.qq)"}{$orderData.qq}{else /}暂无{/if}</span><br>
+    常用微信： <span>{if condition="isset($orderData.wechat)"}{$orderData.wechat}{else /}暂无{/if}</span>
+    <a href="{:url('my_buy_detail',['id'=>$orderData.id])}">确认联系</a>
+    {/if}
+</form>
+</body>
+</html>

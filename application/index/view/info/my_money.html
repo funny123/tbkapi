@@ -1,0 +1,160 @@
+{extend name="public/index"} {block name="content"}
+
+<body class="layui-layout-body">
+	<style>
+		.code .zsy {
+			line-height: 2;
+		}
+	</style>
+	<div class="layui-fluid">
+		<div class=" layui-bg-gray">
+			<div class="layui-row layui-col-space30" style="padding: 15px 30px">
+				<div class="layui-col-md4 layui-col-md-offset4">
+					<div class="layui-card radius10">
+						<div class="layui-card-body" style="text-align: center;">
+							<h2>我的钱包</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="layui-row layui-col-space30" style="padding: 0 30px 15px 30px">
+				<div class="layui-col-sm6 layui-col-md4 layui-col-lg4">
+					<div class="layui-card">
+						<div class="layui-card-body">
+							<div style="text-align: center;">
+								<div class="layui-anim" data-anim="layui-anim-up">
+									<img src="__STATIC__/index/img/yellow_coin1.png" alt="" width="100px" height="100px">
+								</div>
+								<ul style="line-height:1.5">
+									<li>
+										<h2>总计：<span id="money"></span></h2>
+									</li>
+									<li>
+										<h3>时间：2018.4.05</h3>
+									</li>
+									<li>
+										<ul>
+											<li>
+												<h3>
+													<img src="__STATIC__/index/img/yellow_coin1.png" alt="" width="40px" height="40px"> 收入</h3>
+											</li>
+											<li>
+												<h3>
+													<img src="__STATIC__/index/img/yellow_coin1.png" alt="" width="40px" height="40px"> 支出</h3>
+											</li>
+										</ul>
+									</li>
+									<li>
+										<h3>&nbsp;</h3>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="layui-col-sm6 layui-col-md4 layui-col-lg4">
+					<div class="layui-card">
+						<div class="layui-card-body">
+								<div style="text-align: center;">
+									<div class="layui-anim" data-anim="layui-anim-up">
+										<img src="__STATIC__/index/img/dj_coin.png" alt="" width="100px" height="100px">
+									</div>
+									<ul style="line-height:1.5">
+										<li>
+											<h2>总计：500</h2>
+										</li>
+										<li>
+											<h3>&nbsp;</h3>
+										</li>
+										<li>
+											<ul>
+												<li>
+													<h3>
+														<img src="__STATIC__/index/img/yellow_coin1.png" alt="" width="40px" height="40px"> </h3>
+												</li>
+												<li>
+													<h3>
+														<img src="__STATIC__/index/img/blue_coin1.png" alt="" width="40px" height="40px"> </h3>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<h3>&nbsp;</h3>
+										</li>
+									</ul>
+								</div>
+						</div>
+					</div>
+				</div>
+				<div class="layui-col-sm6 layui-col-md4 layui-col-lg4">
+					<div class="layui-card">
+						<div class="layui-card-body">
+							<div style="text-align: center;">
+								<div class="layui-anim" data-anim="layui-anim-up">
+									<img src="__STATIC__/index/img/blue_coin1.png" alt="" width="100px" height="100px">
+								</div>
+								<ul style="line-height:1.5">
+									<li>
+										<h2>总计：500</h2>
+									</li>
+									<li>
+										<h3>时间：2018.4.05</h3>
+									</li>
+									<li>
+										<ul>
+											<li>
+												<h3>
+													<img src="__STATIC__/index/img/blue_coin1.png" alt="" width="40px" height="40px"> 收入</h3>
+											</li>
+											<li>
+												<h3>
+													<img src="__STATIC__/index/img/blue_coin1.png" alt="" width="40px" height="40px"> 支出</h3>
+											</li>
+										</ul>
+									</li>
+									<li>
+										<h3>&nbsp;</h3>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="__STATIC__/index/layui/layui.js"></script>
+	<script src="__STATIC__/index/layui/jquery-2.0.3.min.js"></script>
+	<script>
+		//JavaScript代码区域
+		layui.use('element', function () {
+			var element = layui.element;
+		});
+		$.ajax({
+			async: false,
+			type: "GET",
+			url: "http://www.eintcoin.com/Index/info/person_money",
+			data: {
+			},
+			dataType: "json",
+			async: false,
+			success: function(data) {
+				console.log(data);
+				document.getElementById('money').innerHTML = data.money;
+				// alert(data.length);
+			},
+			error: function(err) {
+				console.log(err);
+			}
+		});
+		function display(url) {
+			htmlobj = $.ajax({
+				url: url,
+				async: false
+			});
+			$("#bord").html(htmlobj.responseText);
+		}
+	</script>
+</body>
+{/block}

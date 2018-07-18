@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="{:url('edit_info')}" method="post">
+    常用qq：<input type="text" name="qq" value="{if condition='!is_null($Think.session.user.qq)'}{$Think.session.user.qq}{/if}{if condition='isset($data.qq)'}{$data.qq}{/if}">
+    <span style="color: red">{if condition="isset($message.qq)"}{$message.qq}{/if}</span>
+    <br>
+    微信号：<input type="text" name="wechat" value="{if condition='!is_null($Think.session.user.wechat)'}{$Think.session.user.wechat}{/if}{if condition='isset($data.wechat)'}{$data.wechat}{/if}">
+    <span style="color: red">{if condition="isset($message.wechat)"}{$message.wechat}{/if}</span>
+    <br>
+    <input type="submit" value="确认修改">
+
+</form>
+
+</body>
+</html>

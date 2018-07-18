@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>矿机市场</title>
+</head>
+<body>
+<table style="border: #0a0a0a 1px solid;">
+    <tr><th>名称</th><th>矿机等级</th><th>时长</th><th>每日收益</th><th>价格</th><th>操作</th></tr>
+    {if condition="isset($allMills)"}
+    {foreach $allMills as $v}
+    <tr>
+        <td>{$v.title}</td>
+        <td>{$v.cate_name}</td>
+        <td>{$v.date}</td>
+        <td>{$v.create_coin}</td>
+        <td>{$v.price}</td>
+        <td><a href="{:url('buy',['id'=>$v.id])}">立即购买</a></td>
+    </tr>
+    {/foreach}
+    {/if}
+</table>
+</body>
+</html>
